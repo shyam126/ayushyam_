@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kiss Day </title>
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+<!-- 🎥 Background Video -->
+<video class="bg-video" autoplay loop muted playsinline>
+  <source src="pic/bgvideo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<div class="video-overlay"></div>
+
+
+
+
+<!-- Background Music -->
+<audio id="bg-music" autoplay loop muted>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Falling Hearts (NON‑BLOCKING) -->
+<div id="hearts-container"></div>
+
+<div class="card">
+  <h1>Happy Kiss Day buggiii</h1>
+  <h2>My <span class="name">buggiii</span> 💖</h2>
+
+  <!-- ✅ SLIDESHOW -->
+  <div class="slideshow">
+    <img id="slide" src="pic/love1.jpeg" alt="Memory">
+    <p id="caption"></p>
+  </div>
+
+  <!-- ✅ TIMELINE -->
+  <h3>Our Story 💕</h3>
+  <div class="timeline">
+    <button data-story="The day we first talked — I didn’t know you’d become this important.">✨ First Talk</button>
+    <button data-story="That laugh we shared until it hurt — still my favorite moment."> That Smile</button>
+    <button data-story="Somewhere between smiles, talks and fights… I fell for you.">💖 Realization</button>
+  </div>
+
+  <p id="storyText" class="story-text"></p>
+
+  <!-- ✅ SURPRISE -->
+  <button id="surpriseBtn" class="surprise">One last thing… 👀</button>
+  <p id="surpriseText" class="surprise-text"></p>
+
+  <!-- ✅ QUESTION -->
+  <p class="final">
+    If today feels right… would you like a Kiss Day kiss from me? 💋
+  </p>
+
+  <button id="yesBtn">😊 Yes</button>
+  <p id="result"></p>
+</div>
+
+<!-- ✅ FIREBASE SDKs -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<script src="script.js"></script>
+</body>
+</html>
