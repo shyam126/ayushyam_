@@ -14,7 +14,7 @@
 .video-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.55) !important;
   z-index: -1;
 }
 
@@ -50,13 +50,13 @@ body {
 .card {
   position: relative;
   z-index: 5;
-  background: white;
+   background: rgba(255, 255, 255, 0.28) !important;
   padding: 28px;
   border-radius: 25px;
   max-width: 420px;
   width: 92%;
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.22) !important;
 }
 
 h1 {
@@ -146,3 +146,114 @@ button.disabled {
 
 
 
+/* later we can remove this */
+
+
+/* ====== YES‑CLICK HEART ANIMATION ====== */
+#heart-burst-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;           /* Above .card (which is z-index:5) */
+  pointer-events: none;  /* Never block clicks */
+}
+
+/* Small hearts that form the big heart grid */
+.tiny-heart {
+  position: absolute;
+  color: #ff4d6d;
+  opacity: 0;
+  transform: scale(.2);
+  animation: tinyPop .9s ease forwards;
+  will-change: transform, opacity;
+}
+
+/* Hearts that fly out from the Yes button */
+.fly-heart {
+  position: fixed;
+  color: #ff4d6d;
+  transform: translate(-50%, -50%) scale(1);
+  animation: flyUp 1.2s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+
+
+
+/* Tiny heart pop-in animation */
+@keyframes tinyPop {
+  0%   { opacity: 0; transform: scale(.2); }
+  10%  { opacity: 1; transform: scale(1); }
+  80%  { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0; transform: scale(1.15) translateY(-4px); }
+}
+
+/* Hearts shoot upward and outward from the button */
+@keyframes flyUp {
+  to {
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(var(--rot)) scale(1.6);
+    opacity: 0;
+  }
+}
+
+
+/* ✅ VIDEO POPUP MODAL */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;                 /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0) !important;
+  backdrop-filter: none !important;
+  z-index: 9999;                 /* above everything */
+  padding: 16px;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  width: min(720px, 95vw);
+  background: transparent !important;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: none !important;
+}
+
+.modal-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  z-index: 2;
+}
+
+.modal-close:hover {
+  background: #fff;
+}
+
+.card p,
+.card .story-text,
+.card .surprise-text,
+.card .final,
+.card #result{
+  color: #111 !important;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.55);
+}
