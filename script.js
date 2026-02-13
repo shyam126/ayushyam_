@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /******** 🔥 FIREBASE CONFIG ********/
-const firebaseConfig = {
-  apiKey: "AIzaSyCbWHq6lA1ps1EYnRZ1Fej5WFAK4EnzLco",
-  authDomain: "customcount-1ac47.firebaseapp.com",
-  databaseURL: "https://customcount-1ac47-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "customcount-1ac47",
-  storageBucket: "customcount-1ac47.firebasestorage.app",
-  messagingSenderId: "790474863358",
-  appId: "1:790474863358:web:a44a44b479620d87f76baf"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyCbWHq6lA1ps1EYnRZ1Fej5WFAK4EnzLco",
+    authDomain: "customcount-1ac47.firebaseapp.com",
+    databaseURL: "https://customcount-1ac47-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "customcount-1ac47",
+    storageBucket: "customcount-1ac47.firebasestorage.app",
+    messagingSenderId: "790474863358",
+    appId: "1:790474863358:web:a44a44b479620d87f76baf"
+  };
 
   firebase.initializeApp(firebaseConfig);
   const database = firebase.database();
@@ -63,8 +63,52 @@ const firebaseConfig = {
     surpriseBtn.disabled = true;
   });
 
-  /******** 😊 YES BUTTON ********/
+  /******** 🎥 YES BUTTON VIDEO POPUP (STAYS OPEN) ********/
+  const videoModal = document.getElementById("videoModal");
+  const yesVideo = document.getElementById("yesVideo");
+  const closeModalBtn = document.getElementById("closeModal");
 
+  // ✅ Safety: If modal elements are missing, don't break the rest of the page
+  function openVideoModal() {
+    if (!videoModal || !yesVideo) return;
+
+    videoModal.classList.add("show");
+
+    // Restart from beginning each time
+    yesVideo.currentTime = 0;
+    yesVideo.play().catch(() => {});
+  }
+
+  function closeVideoModal() {
+    if (!videoModal || !yesVideo) return;
+
+    videoModal.classList.remove("show");
+    yesVideo.pause();
+    yesVideo.currentTime = 0;
+  }
+
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", closeVideoModal);
+  }
+
+  if (videoModal) {
+    // Close when clicking outside the modal content (overlay click)
+    videoModal.addEventListener("click", (e) => {
+      if (e.target === videoModal) closeVideoModal();
+    });
+  }
+
+  // Close on ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && videoModal && videoModal.classList.contains("show")) {
+      closeVideoModal();
+    }
+  });
+
+  // ❌ Do NOT add ended event => it must stay open until user closes
+  // yesVideo.addEventListener("ended", closeVideoModal);
+
+  /******** 😊 YES BUTTON ********/
   const yesBtn = document.getElementById("yesBtn");
   const result = document.getElementById("result");
 
@@ -72,7 +116,7 @@ const firebaseConfig = {
   const alreadySaved = localStorage.getItem("yesSaved");
 
   if (alreadySaved) {
-    result.innerText = "You already said YES 😊💖";
+    result.innerText = "My Buggii + Her Yes = Perfect Love 💞";
   }
 
   yesBtn.addEventListener("click", () => {
@@ -93,8 +137,9 @@ const firebaseConfig = {
       result.innerText = "You keep saying YES 😄💖";
     }
 
+    // ✅ Open video popup and play (stays open until user closes)
+    openVideoModal();
   });
-
 
   /******** ❤️ FALLING HEARTS ********/
   setInterval(() => {
@@ -107,15 +152,16 @@ const firebaseConfig = {
     setTimeout(() => heart.remove(), 6000);
   }, 350);
 
-
-
-
   /******** 🕰 TIMELINE POP‑IN BOX ********/
   const storyBox = document.getElementById("storyBox");
   const storyBoxText = document.getElementById("storyBoxText");
 
   document.querySelectorAll(".timeline button").forEach(button => {
     button.addEventListener("click", () => {
+      // NOTE: Your HTML currently doesn't show storyBox/storyBoxText.
+      // If they don't exist, this will error. Add a guard:
+      if (!storyBox || !storyBoxText) return;
+
       storyBoxText.innerText = button.dataset.story;
       storyBox.classList.add("show");
     });
