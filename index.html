@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kiss Day </title>
+  <title>#Ayushyam </title>
 
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -24,15 +24,15 @@
 
 <!-- Background Music -->
 <audio id="bg-music" autoplay loop muted>
-  <source src="music.mp3" type="audio/mpeg">
+  <source src="pic/Ishq hai.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Falling Hearts (NON‑BLOCKING) -->
 <div id="hearts-container"></div>
 
 <div class="card">
-  <h1>Happy Kiss Day buggiii</h1>
-  <h2>My <span class="name">buggiii</span> 💖</h2>
+  <h1>Happy Kiss Day buggiii </h1>
+  <!-- <h2>My <span class="name">buggiii</span> 💖</h2> ->>
 
   <!-- ✅ SLIDESHOW -->
   <div class="slideshow">
@@ -68,5 +68,21 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
 <script src="script.js"></script>
+
+
+
+<!-- ✅ YES BUTTON VIDEO POPUP MODAL -->
+<div id="videoModal" class="modal">
+  <div class="modal-content">
+    <button id="closeModal" class="modal-close" aria-label="Close video">✕</button>
+
+    <video id="yesVideo" class="modal-video" controls playsinline preload="metadata">
+      <source src="pic/Onclick.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+
 </body>
 </html>
